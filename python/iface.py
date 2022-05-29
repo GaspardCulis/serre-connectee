@@ -61,9 +61,9 @@ def arroser(ml):
         return "busy"
     busy = True
     print("Debut de l\'arrosage.")
-    wiringpi.digitalWrite(pins_sortie["pompe_eau"], 1)
+    #wiringpi.digitalWrite(pins_sortie["pompe_eau"], 1)
     sleep(ml / millilitres_par_seconde)
-    wiringpi.digitalWrite(pins_sortie["pompe_eau"], 0)
+    #wiringpi.digitalWrite(pins_sortie["pompe_eau"], 0)
     print("Fin de l\'arrosage.")
     busy = False
     return "ok"

@@ -98,7 +98,6 @@ async function executePythonFunction(script_path, script_name, function_name, ar
 }
 
 function parsePythonResult(result) {
-    print("TG la caisse : "+result)
     if (result == undefined) {
         return null;
     } else if ( result.startsWith("(") && result.endsWith(")") ) {
@@ -111,7 +110,12 @@ function parsePythonResult(result) {
     } else if ( result.startsWith("'") && result.endsWith("'") ) {
         return result.substring(1, result.length - 1);
     } else {
-        return parseFloat(result);
+        let parsed = parseFloat(result);
+        if (isNaN(parsed)) {
+            return result;
+        } else {
+            return parsed;
+        }
     }
 }
 

@@ -38,11 +38,6 @@ async function get_infos() {
     };
 }
 
-async function test() {
-    let {results, error} = await executePythonFunction("/python", "teste", "test", [1,2,"bite"])
-    console.log(results, error);
-}
-
 router.get('/', (req, res) => {
     get_infos().then(infos => {
         res.render("infos", infos);
@@ -50,4 +45,20 @@ router.get('/', (req, res) => {
     
 })
 
+router.post('/arroser', (req, res) => {
+    var ml = parseFloat(req.body.ml);
+    //check if ml is a number
+    if (isNaN(ml)) {
+        res.sendStatus(400); // Error 400: Bad Request
+    } else {
+        console.log(new Date() + " : executing arroser");
+        //res.sendStatus(200); // Success 200: OK
+        //res.send("STARTED")
+        executePythonFunction("/python", "iface", "arroser", [ml]).then((result) => {
+            res.send("DONE")
+        }).catch((error) => {
+            res.send("ERROR"); // Error 500: Internal Server Error
+        });
+    }
+});
 module.exports = router;

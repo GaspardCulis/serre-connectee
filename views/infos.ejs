@@ -16,10 +16,21 @@
         <br>
         <p>Température et humidité exterieurs : <%= locals.temp_ext %>°C ,  <%= locals.hum_ext %>% </p>
         <p>Température et humidité interieurs : <%= locals.temp_int %>°C ,  <%= locals.hum_int %>%</p>
-
+        <br>
+        <hr>
+        <br>
+        <div class="hbox">
+            <p>Arroser </p>
+            <div class="spacer_10px"></div>
+            <form action="javascript:_on_arroser_request()" method="post">
+                <input type="text" name="ml" id="ml" onkeypress='validate_number_field(event)'>
+                ml
+                <input type="submit" value="OK" id="btn_arroser">
+            </form>
+            <img src="/images/plant_water.gif" width="60px" height="60px" id="plant_gif">
+            <img src="/images/error.gif" width="60px" height="60px" id="error_gif">
+        </div>
     </div>
-
-
 
 
     <!-- Fin du bordel -->
@@ -30,5 +41,7 @@
             <li class="section"><a href="/settings">Parametres</a></li>
         </ul>
     </nav>
+<script type="text/javascript" src="scripts/infos.js"></script>
+<script type="text/javascript" src="scripts/utils.js"></script>
 </body>
 </html>
