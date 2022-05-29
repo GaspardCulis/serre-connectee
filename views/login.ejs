@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="style/style_login.css">
+<title>Serre connectée</title>
+</head>
+<body>
+
+    <div>
+        <form action="/login" method="post" class="login_form">
+            <label for="password">Mot de passe: </label>
+            <input class="input_field" type="password" name="password" id="password" required>
+            <input class="button" type="submit" value="Login">
+        </form>
+    </div>
+
+<div id="error"><%- locals.error %></div>
+<script type="text/javascript" src="scripts/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="style/global_style.css">
+</head>
+<body>
+    <header>
+        <img src="/images/cannabis-logo.png">
+        <h1>Serre connectée</h1>
+        <img src="/images/cannabis-logo.png">
+    </header>
+    <!-- Ton bordel ici -->
+
+    <div id="main_frame" class="options">
+
+        <div class="option">
+            <div id="change_pass">
+                <label>Changer de mot de passe</label>
+                <div id="set_pass" class="input_field">
+                    <input type="password", name="new_pass" id="new_pass" required>
+                    <button id="submit_new_pass">Changer</button> 
+                </div>
+            </div>
+        </div>
+        <div class="option">
+            <a href="/disconnect">Se déconnecter</a>
+        </div>
+        
+    </div>
+
+    <!-- Fin du bordel -->
+    <nav id=sections_bar>
+        <ul id="sections">
+            <li class="section"><a href="/infos">Informations</a></li>
+            <li class="section"><a href="/config">Configurer</a></li>
+            <li class="section" id="selected_menu"><a href="/settings">Parametres</a></li>
+        </ul>
+    </nav>
+<script type="text/javascript" src="scripts/utils.js"></script>
+<script type="text/javascript" src="scripts/settings.js"></script>
+</body>
+</html>

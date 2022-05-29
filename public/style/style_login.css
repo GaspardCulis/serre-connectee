@@ -1,0 +1,42 @@
+body {
+  background-color: rgb(40, 40, 40);
+}
+
+form.login_form {
+  margin-top: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+form label {
+  font-size: xx-large;
+  color: whitesmoke;
+  margin-bottom: 20px;
+  font-family: Impact;
+  float: left;
+}
+
+.input_field {
+  display: inline-block;
+  margin-bottom: 20px;
+  font-size: xx-large;
+  background-color: slategray;
+  border-radius: 5px;
+  border: solid;
+  text-align: center;
+}
+
+.button {
+  margin-bottom: 20px;
+  padding: 10px 70px;
+  font-size: xx-large;
+  background-color: grey;
+  border-radius: 10px;
+  border: solid;
+}
+
+.button:hover {
+  background-color: rgb(80, 80, 80);
+}
