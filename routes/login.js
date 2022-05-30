@@ -19,7 +19,7 @@ router.post('/', (req, res) => {
 
 function handleLogin(req, res) {
     let hash = Utils.sha256(req.body.password);
-    let database = Utils.getDataBase();
+    let database = Utils.getDatabase();
     let storedHash = database.password;
     if (hash == storedHash) {
         var log_hash = Utils.sha256(Math.random().toString());

@@ -3,7 +3,7 @@ const fs = require('fs');
 const { exec } = require('child_process');
 const { rejects } = require("assert");
 
-function getDataBase() {
+function getDatabase() {
     return JSON.parse(fs.readFileSync('./data/database.json'));
 }
 
@@ -13,12 +13,12 @@ function storeDatabase(database) {
 
 function isLogged(signedCookies) {
     checkLoginsExpiration();
-    let database = getDataBase();
+    let database = getDatabase();
     return database.logins.some((el)=>{return el.hash==signedCookies.log_hash & !el.expired});
 }
 
 function checkLoginsExpiration() {
-    let database = getDataBase();
+    let database = getDatabase();
     let date = new Date();
     let i = 0;
     for(let login of database.logins) {
@@ -34,7 +34,7 @@ function checkLoginsExpiration() {
 }
 
 function clearExpiredLogins() {
-    let database = getDataBase();
+    let database = getDatabase();
     let new_database = [];
     for(let login of database.logins) {
         if(! login.expired) {
@@ -50,7 +50,7 @@ function isPasswordValid(password) {
 }
 
 function changePassword(new_pass) {
-    let database = getDataBase();
+    let database = getDatabase();
     database.password = sha256(new_pass).toString();
     database.logins = [];
     storeDatabase(database);
@@ -123,7 +123,7 @@ module.exports = {
     sha256: function (text) {
         return sha256(text).toString()
     },
-    getDataBase: getDataBase,
+    getDatabase: getDatabase,
     storeDatabase: storeDatabase,
     isLogged: isLogged,
     clearExpiredLogins: clearExpiredLogins,

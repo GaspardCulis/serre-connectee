@@ -2,10 +2,26 @@
 	"password": "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8",
 	"logins": [
 		{
-			"hash": "2ca4a31971c5f6ee29607c941e5c106446499472651f11e9f5e103b42d06c3ba",
-			"timestamp": "2022-05-30T16:34:21.020Z",
+			"hash": "f758874d732dd24b377c557e81c2cc712bfd55eeb2fd26f1244872d80814d89b",
+			"timestamp": "2022-05-30T21:34:12.285Z",
 			"max_age": 3600000,
 			"expired": false
 		}
-	]
+	],
+	"config": {
+		"arrosage_auto": {
+			"mode": "hourly",
+			"hour": 1272,
+			"time_of_day": 1405,
+			"ml": 71
+		},
+		"ideal_temp": {
+			"enabled": "false",
+			"value": 23
+		},
+		"ideal_humid": {
+			"enabled": "true",
+			"value": 50
+		}
+	}
 }

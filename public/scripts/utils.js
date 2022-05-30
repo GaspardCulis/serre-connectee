@@ -59,3 +59,34 @@ function sendData(data, url, success_callback, error_callback) {
       if(theEvent.preventDefault) theEvent.preventDefault();
     }
   }
+
+function validate_hour_field(evt) {
+  var theEvent = evt || window.event;
+  
+    // Handle paste
+    if (theEvent.type === 'paste') {
+        key = event.clipboardData.getData('text/plain');
+    } else {
+    // Handle key press
+        var key = theEvent.keyCode || theEvent.which;
+        key = String.fromCharCode(key);
+    }
+    var regex = /[0-9]|\h/;
+    if( !regex.test(key)) {
+      theEvent.returnValue = false;
+      if(theEvent.preventDefault) theEvent.preventDefault();
+    }
+}
+
+function parse_hour(hour, symbol='h') {
+    let out = [0, -1];
+    hour = hour.split(symbol);
+    if (hour.length == 1 & hour[0] != '') {
+        out[0] = parseInt(hour[0]);
+        out[1] = 0;
+    } else if (hour.length == 2 & hour[0] != '' & hour[1] != '') {
+        out[0] = parseInt(hour[0]);
+        out[1] = parseInt(hour[1]);
+    }
+    return out[0]*60 + out[1];
+}

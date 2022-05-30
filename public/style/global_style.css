@@ -203,3 +203,8 @@ h1 {
 .tooltip:hover .tooltiptext {
   visibility: visible;
 }
+
+
+.hidden {
+  display: none;
+}

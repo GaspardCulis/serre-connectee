@@ -11,6 +11,87 @@
     </header>
     <!-- Ton bordel ici -->
 
+    <div id="main_frame">
+        <div class="hbox" id="arrosage_auto">
+            <p id="arrosage_prompt">Arrosage automatique tout les </p>
+            <div class="spacer_10px"></div>
+            <div id="hourly_mode" class="hbox">
+                <input type="text" name="hour_count" id="hour" onkeypress='validate_hour_field(event)' style="width: 40px;">
+                <div class="spacer_10px"></div>
+            </div>
+            <select name="mode" onchange="_on_config_change()" id="select_mode_arrosage">
+                <option value="disabled">désactivé</option>
+                <option value="daily">jours</option>
+                <option value="hourly">heures</option>
+            </select>
+            <div class="spacer_10px"></div>
+            <div id="daily_mode" class="hbox">
+                <p> à </p>
+                <div class="spacer_10px"></div>
+                <input type="time" name="time_of_day" id="time_of_day" onkeypress="_on_config_change()" >
+            </div>
+            <div class="spacer_10px"></div>
+            <p>de</p>
+            <div class="spacer_10px"></div>
+            <div class="hbox" id="ml_field">
+                <input type="text" name="ml" id="ml" onkeypress='validate_number_field(event)' style="width: 60px";>
+                <div class="spacer_10px"></div>
+                ml
+            </div>
+        </div>
+        <br>
+        <hr>
+        <br>
+        <div class="hbox">
+            <div class="vbox" style="align-items: baseline;">
+                <div class="hbox" id="temperature_ideale">
+                    <p>L'ajustement de température idéale est</p>
+                    <div class="spacer_10px"></div>
+                    <select name="temp_adjust" onchange="_on_config_change()" id="temp_adjust">
+                        <option value="false">désactivé</option>
+                        <option value="true">activé</option>
+                    </select>
+                    <div class="spacer_10px"></div>
+                    <p>et réglé à</p>
+                    <div class="spacer_10px"></div>
+                    <input type="text" name="temp_adjust_value" id="temp_adjust_value" onkeypress='validate_number_field(event)' style="width: 60px";>
+                    <p>°C</p>
+                </div>
+                <div class="hbox" id="humidite_ideale">
+                    <p>L'ajustement d'humidité idéale est</p>
+                    <div class="spacer_10px"></div>
+                    <select name="humid_adjust" onchange="_on_config_change()" id="humid_adjust">
+                        <option value="false">désactivé</option>
+                        <option value="true">activé</option>
+                    </select>
+                    <div class="spacer_10px"></div>
+                    <p>et réglé à</p>
+                    <div class="spacer_10px"></div>
+                    <input type="text" name="humid_adjust_value" id="humid_adjust_value" onkeypress='validate_number_field(event)' style="width: 60px";>
+                    <p>%</p>
+                </div>
+            </div>
+        </div>
+        <div class="hbox", style="justify-content: center; padding-bottom: 30px;">
+            <button id="apply_changes_btn" onclick="_on_apply_changes_btn_click()">Changer</button>
+            <img src="/images/success.gif" width="60px" height="60px" id="horloge_gif">
+            <img src="/images/error.gif" width="60px" height="60px" id="error_gif">
+        </div>
+    </div>
+
+
+    <div id="params">
+        <p id="val_auto_mode" class="hidden"> <%= locals.auto_mode %> </p>
+        <p id="val_hour" class="hidden"> <%= locals.hour %> </p>
+        <p id="val_time_of_day" class="hidden"> <%= locals.time_of_day %> </p>
+        <p id="val_ml" class="hidden"> <%= locals.ml %> </p>
+        <p id="val_temp_adjust" class="hidden"> <%= locals.temp_adjust %> </p>
+        <p id="val_temp_adjust_value" class="hidden"> <%= locals.temp_adjust_value %> </p>
+        <p id="val_humid_adjust" class="hidden"> <%= locals.humid_adjust %> </p>
+        <p id="val_humid_adjust_value" class="hidden"> <%= locals.humid_adjust_value %> </p>
+    </div>
+    
+
     <!-- Fin du bordel -->
     <nav id=sections_bar>
         <ul id="sections">
@@ -19,5 +100,7 @@
             <li class="section"><a href="/settings">Parametres</a></li>
         </ul>
     </nav>
+<script type="text/javascript" src="scripts/config.js"></script>
+<script type="text/javascript" src="scripts/utils.js"></script>
 </body>
 </html>
