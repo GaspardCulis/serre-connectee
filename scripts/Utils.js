@@ -130,5 +130,4 @@ module.exports = {
     changePassword: changePassword,
     isPasswordValid: isPasswordValid,
     getDateAndTime: getDateAndTime,
-    executePythonFunction: executePythonFunction
 }

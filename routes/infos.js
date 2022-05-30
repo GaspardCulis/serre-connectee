@@ -1,39 +1,25 @@
 const express = require('express');
 const router = express.Router();
-const { getDateAndTime, executePythonFunction } = require("../scripts/Utils"); 
+const { getDateAndTime } = require("../scripts/Utils");
+const iface = require('../scripts/iface');
 
 async function get_infos() {
-    let res_ext = await executePythonFunction("/python", "iface", "get_humid_temp", ["ext"]);
-    let results_ext = res_ext.results;
-    let error_ext = res_ext.error;
-    let res_int = await executePythonFunction("/python", "iface", "get_humid_temp", ["int"]);
-    let results_int = res_int.results;
-    let error_int = res_int.error;
-
-    let temp_ext, hum_ext, temp_int, hum_int;
-    if (error_ext) {
-        temp_ext = "Error";
-        hum_ext = "Error"
-    } else {
-        console.log("ext : ", results_ext);
-        temp_ext = results_ext[0];
-        hum_ext = results_ext[1];
-    }
-    if (error_int) {
-        temp_int = "Error";
-        hum_int = "Error"
-    } else {
-        console.log("int : ", results_int);
-        temp_int = results_int[0];
-        hum_int = results_int[1];
-    }
+    let res_ext = ["Error", "Error"];
+    let res_int = ["Error", "Error"];
+    res_ext = await iface.get_humid_temp("ext").catch(err => {console.log(new Date()+" : Couldn't get external temp and humidity");});
+    res_int = await iface.get_humid_temp("int").catch(err => {console.log(new Date()+" : Couldn't get internal temp and humidity");});
+    
+    let water_level = "Error";
+    water_level = await iface.get_water_level().catch(err => {console.log(new Date()+" : Couldn't get water level");});
+    
     let date = getDateAndTime();
 
     return {
-        temp_ext: temp_ext,
-        hum_ext: hum_ext,
-        temp_int: temp_int,
-        hum_int: hum_int,
+        hum_ext: res_ext[0],
+        temp_ext: res_ext[1],
+        hum_int: res_int[0],
+        temp_int: res_int[1],
+        water_level: water_level,
         date: date
     };
 }
@@ -52,10 +38,8 @@ router.post('/arroser', (req, res) => {
         res.sendStatus(400); // Error 400: Bad Request
     } else {
         console.log(new Date() + " : executing arroser");
-        //res.sendStatus(200); // Success 200: OK
-        //res.send("STARTED")
-        executePythonFunction("/python", "iface", "arroser", [ml]).then((result) => {
-            res.send("DONE")
+        iface.arroser(ml).then((result) => {
+            res.send("DONE");
         }).catch((error) => {
             res.send("ERROR"); // Error 500: Internal Server Error
         });

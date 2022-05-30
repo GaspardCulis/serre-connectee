@@ -7,6 +7,7 @@ from time import sleep
 #import Adafruit_DHT
 import getopt
 import sys
+import random
 
 
 # Tu peut trouver les references des pins ici :
@@ -35,9 +36,17 @@ for i in pins_sortie.items():
 """
 # Inputs
 
+# Parameres :
+#   capteur : "ext" ou "int" pour exterieur ou interieur
+# Retourne :
+#   [humidite et temperature]
+
 
 def get_humid_temp(capteur, dht=11):  # capteur : soit "int" soit "ext"
     pin_capteur = pins_entree["hum/temp_"+capteur]
+    if DEBUG:
+        return random.randint(0, 100), random.randint(12, 40)
+
     if dht == 11:
         sensor = Adafruit_DHT.DHT11
     else:
@@ -51,6 +60,16 @@ def get_humid_temp(capteur, dht=11):  # capteur : soit "int" soit "ext"
         else:
             humid, temp = "error", "error"
     return humid, temp
+
+# Parametres :
+#    Rien lol
+# Retourne :
+#    Le niveau d'eau en pourcentage (de 0 a 100)
+
+
+def get_water_level():
+    if DEBUG:
+        return random.randint(0, 100)
 
 # Outputs
 

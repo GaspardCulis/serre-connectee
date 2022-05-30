@@ -14,8 +14,24 @@
     <div id="main_frame">
         <p>Il est <%= locals.date[1] %> et nous sommes le <%= locals.date[0] %>.</p>
         <br>
-        <p>Température et humidité exterieurs : <%= locals.temp_ext %>°C ,  <%= locals.hum_ext %>% </p>
-        <p>Température et humidité interieurs : <%= locals.temp_int %>°C ,  <%= locals.hum_int %>%</p>
+        <hr>
+        <br>
+        <div class="hbox" style="justify-content: space-between;">
+            <div id="temps">
+                <p>Température et humidité exterieurs : <%= locals.temp_ext %>°C ,  <%= locals.hum_ext %>% </p>
+                <p>Température et humidité interieurs : <%= locals.temp_int %>°C ,  <%= locals.hum_int %>%</p>
+            </div>
+            <div id="eau" class="hbox">
+                <p>Niveau de l'eau :</p>
+                <div class="spacer_10px"></div>
+                <div id="water_level_container" class="tooltip" style="background-color:grey ; width: 30px; height: 100px; display: flex; justify-content: center; align-items: flex-end;">
+                    <div  id="water_level" style="background-color:cyan ; width: 26px; height: 90px;">
+
+                    </div>
+                    <p class="tooltiptext" id="water_level_value"><%= locals.water_level %>% </p>
+                </div>
+            </div>
+        </div>
         <br>
         <hr>
         <br>
