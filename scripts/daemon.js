@@ -9,7 +9,7 @@ function start() {
     if (config.arrosage_auto.mode=="hourly") {
         let wait_time = config.arrosage_auto.hour*60;
         console.log(`${new Date()} : Arrosage auto active en mode houly, toutes les ${wait_time} minutes`);
-        arrosage_interval = setInterval(arrosage_auto_worker, wait_time*1000);
+        arrosage_interval = setInterval(arrosage_auto_worker, wait_time*60*1000);
     } else if (config.arrosage_auto.mode=="daily") {
         let hour = new Date().getHours();
         let minute = new Date().getMinutes();
@@ -19,7 +19,7 @@ function start() {
         }
         arrosage_timeout = setTimeout(() => {
             arrosage_interval = setInterval(arrosage_auto_worker, 24*60*60*1000);
-        }, wait_time*1000);
+        }, wait_time*60*1000);
         
         
     }
