@@ -17,11 +17,11 @@ def home():
 <h2>Endpoints :</h2>
 <ul>
 <li>/serre/temp_hum        [GET]</li>
-<li>/serre/niveau_eau      [GET</li>
-<li>/serre/arroser         [POST</li>
-<li>/serre/wifi/connect    [POST</li>
-<li>/serre/wifi/remove     [POST</li>
-<li>/serre/reboot          [POST</li>
+<li>/serre/niveau_eau      [GET]</li>
+<li>/serre/arroser         [POST]</li>
+<li>/serre/wifi/connect    [POST]</li>
+<li>/serre/wifi/remove     [POST]</li>
+<li>/serre/reboot          [GET]</li>
 </ul>'''
 
 
