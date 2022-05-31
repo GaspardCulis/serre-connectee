@@ -1,6 +1,7 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const { reboot } = require('../scripts/iface');
+const daemon = require('./scripts/daemon');
 
 const login = require("./routes/login");
 const infos = require("./routes/infos");
@@ -59,6 +60,8 @@ app.get("/reboot", (req, res) => {
         res.sendStatus(500);
     });
 })
+
+daemon.start();
 
 app.listen(PORT);
 console.log("Server started on http://localhost:"+PORT);

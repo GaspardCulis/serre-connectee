@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const daemon = require('./scripts/daemon');
 const { getDatabase, storeDatabase } = require('../scripts/Utils');
 
 router.get('/', (req, res) => {
@@ -51,6 +52,7 @@ router.post('/arrosage_auto', (req, res) => {
     db.config.ideal_humid.enabled = humid_adjust;
     db.config.ideal_humid.value = humid_adjust_value;
     storeDatabase(db);
+    daemon.update();
 
     res.send("OK");
 });
