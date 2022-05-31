@@ -1,6 +1,8 @@
 import iface
+import wpa_supplicant
 import flask
 from flask import request, jsonify
+import os
 
 PORT = 6900
 
@@ -47,6 +49,28 @@ def api_arroser():
     if ml < 0:
         return "Error: Volume incorrect, c négatif mon reuf WTF.", 400
     iface.arroser(ml)
+    return "OK", 200
+
+
+@app.route('/serre/wifi/connect', methods=['POST'])
+def api_wifi_connect():
+    ssid = request.json['ssid']
+    key = request.json['key']
+    if not ssid or not key:
+        return "Error: Pas de SSID ou de KEY fourni.", 400
+    wpa_supplicant.add_network(ssid, key)
+    return "OK", 200
+
+
+@app.route('/serre/wifi/remove', methods=['POST'])
+def api_wifi_remove():
+    wpa_supplicant.remove_network(request.json['ssid'])
+    return "OK", 200
+
+
+@app.route('/serre/reboot', methods=['GET'])
+def api_reboot():
+    os.system('reboot')
     return "OK", 200
 
 

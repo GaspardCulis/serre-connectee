@@ -31,4 +31,36 @@ change_pass_button.addEventListener("click", () => {
     }
 })
 
+/*------------------------------------------*/
+/*             WIFI CONFIGURATION            */
+/*------------------------------------------*/
 
+const wifi_button = document.getElementById("submit_wifi");
+
+wifi_button.addEventListener("click", () => {
+    sendData({
+        "ssid": document.getElementById("ssid").value, 
+        "key": document.getElementById("key").value}, "/settings/wifi/connect", (response)=>{
+        alert("Configuration Wifi effectuée ! Reboot pour que ça prenne effet.");
+    },
+     (error_code)=>{
+         alert('Erreur.');
+    });
+});
+
+
+/*------------------------------------------*/
+/*             WIFI REMOVAL                 */
+/*------------------------------------------*/
+
+const remove_button = document.getElementById("remove_wifi");
+
+remove_button.addEventListener("click", () => {
+   sendData({
+        "ssid": document.getElementById("ssid_to_yeet").value,
+    }, "/settings/wifi/remove", (response)=>{
+        alert("Wifi supprimé !");
+    },(error_code)=>{
+        alert('Erreur.');
+    });
+});

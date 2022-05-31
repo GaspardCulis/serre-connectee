@@ -1,5 +1,6 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
+const { reboot } = require('../scripts/iface');
 
 const login = require("./routes/login");
 const infos = require("./routes/infos");
@@ -49,6 +50,14 @@ app.get('/disconnect', (req, res) => {
     Utils.storeDatabase(database);
     Utils.clearExpiredLogins();
     res.redirect("/login");
+})
+
+app.get("/reboot", (req, res) => {
+    reboot().then(response => {
+        res.sendStatus(200);
+    }).catch(error => {
+        res.sendStatus(500);
+    });
 })
 
 app.listen(PORT);

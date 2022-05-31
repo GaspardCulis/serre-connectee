@@ -23,7 +23,7 @@ pins_sortie = {"pompe_eau": 0, "ventilateur_sec": 2, "ventilateur_humid": 3,
 
 pins_entree = {"hum/temp_ext": 12, "hum/temp_int": 13, "niv_eau": 14}
 
-DEBUG = True
+DEBUG = True  # Pour avoir des resultats de test sans avoir les capteurs qui marchent
 
 busy = False
 
@@ -71,13 +71,13 @@ def get_water_level():
     if DEBUG:
         return random.randint(0, 100)
 
-# Outputs
 
-
+# Parametres :
+#   ml : nombre de millilitres a arroser
 def arroser(ml):
     global busy
     if busy:
-        return "busy"
+        raise Exception("Busy")
     busy = True
     print("Debut de l\'arrosage.")
     #wiringpi.digitalWrite(pins_sortie["pompe_eau"], 1)
@@ -122,31 +122,3 @@ def thermostat(temp_voulue):  # Va aller a la temperature voulue
         boucle_froid(temp_voulue)
     else:
         boucle_chaud(temp_voulue)
-
-
-def parseArgs(argumentList, options):
-    out = dict()
-    for option in options:
-        param = argumentList[argumentList.index(option) + 1]
-        if option in argumentList:
-            if param[0] == "-":
-                out[option] = ""
-            else:
-                out[option] = param
-    return out
-
-
-if(__name__ == "__main__"):
-    argumentList = sys.argv[1:]
-    options = ["-g", "-s", "-m"]
-    out = parseArgs(argumentList, options)
-
-    module = out["-m"]
-    if "-g" in out.keys():
-        print()
-    elif "-s" in out.keys():
-        print("setting "+out["-s"])
-
-    print(out["-m"])
-
-    print(out)
