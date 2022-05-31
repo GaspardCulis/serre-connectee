@@ -6,7 +6,6 @@ const BASE_URL = `http://localhost:${PORT}/serre/`;
 async function get_humid_temp(capteur) {
     const url = BASE_URL+"humid_temp?cpt="+capteur;
     let response = await axios.get(url);
-    console.log("RESPONSE:"+response.data)
     return response.data;
 }
 
