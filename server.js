@@ -39,7 +39,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/disconnect', (req, res) => {
-    let database = Utils.getDataBase();
+    let database = Utils.getDatabase();
     let log_hash = req.signedCookies.log_hash;
     let i = 0;
     for(let login of database.logins) {
