@@ -1,6 +1,6 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
-const { reboot } = require('../scripts/iface');
+const { reboot } = require('./scripts/iface');
 const daemon = require('./scripts/daemon');
 
 const login = require("./routes/login");
@@ -11,7 +11,7 @@ const post = require("./routes/post");
 
 const Utils = require("./scripts/Utils");
 
-const PORT=8000
+const PORT=80
 const app = express();
 
 app.set('view engine', 'ejs');

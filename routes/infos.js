@@ -6,11 +6,11 @@ const iface = require('../scripts/iface');
 async function get_infos() {
     let res_ext = ["Error", "Error"];
     let res_int = ["Error", "Error"];
-    res_ext = await iface.get_humid_temp("ext").catch(err => {console.log(new Date()+" : Couldn't get external temp and humidity");});
-    res_int = await iface.get_humid_temp("int").catch(err => {console.log(new Date()+" : Couldn't get internal temp and humidity");});
+    res_ext = await iface.get_humid_temp("ext").catch(err => {console.log(new Date()+" : Couldn't get external temp and humidity"); return ["Error", "Error"];});
+    res_int = await iface.get_humid_temp("int").catch(err => {console.log(new Date()+" : Couldn't get internal temp and humidity"); return ["Error", "Error"];});
     
     let water_level = "Error";
-    water_level = await iface.get_water_level().catch(err => {console.log(new Date()+" : Couldn't get water level");});
+    water_level = await iface.get_water_level().catch(err => {console.log(new Date()+" : Couldn't get water level"); return "Error";});
     
     let date = getDateAndTime();
 

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const daemon = require('./scripts/daemon');
+const daemon = require('../scripts/daemon');
 const { getDatabase, storeDatabase } = require('../scripts/Utils');
 
 router.get('/', (req, res) => {

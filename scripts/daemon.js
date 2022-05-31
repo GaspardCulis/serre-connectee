@@ -1,5 +1,5 @@
-const { getDatabase } = require("./scripts/Utils");
-const { arroser } = require("./scripts/iface");
+const { getDatabase } = require("../scripts/Utils");
+const { arroser } = require("../scripts/iface");
 
 var arrosage_interval;
 var arrosage_timeout;
@@ -7,7 +7,9 @@ var arrosage_timeout;
 function start() {
     let config = getDatabase().config;
     if (config.arrosage_auto.mode=="hourly") {
-        arrosage_interval = setInterval(arrosage_auto_worker, config.arrosage_auto.hour*60);
+        let wait_time = config.arrosage_auto.hour*60;
+        console.log(`${new Date()} : Arrosage auto active en mode houly, toutes les ${wait_time} heures`);
+        arrosage_interval = setInterval(arrosage_auto_worker, wait_time*1000);
     } else if (config.arrosage_auto.mode=="daily") {
         let hour = new Date().getHours();
         let minute = new Date().getMinutes();
@@ -16,8 +18,9 @@ function start() {
             wait_time += 24*60;
         }
         arrosage_timeout = setTimeout(() => {
-            arrosage_interval = setInterval(arrosage_auto_worker, 24*60*60);
-        }, wait_time);
+            arrosage_interval = setInterval(arrosage_auto_worker, 24*60*60*1000);
+        }, wait_time*1000);
+        
         
     }
 }
@@ -41,3 +44,8 @@ function arrosage_auto_worker() {
     }
     );
 }
+
+module.exports = {
+    start,
+    update,
+};
