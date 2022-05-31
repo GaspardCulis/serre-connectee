@@ -8,7 +8,7 @@ function start() {
     let config = getDatabase().config;
     if (config.arrosage_auto.mode=="hourly") {
         let wait_time = config.arrosage_auto.hour*60;
-        console.log(`${new Date()} : Arrosage auto active en mode houly, toutes les ${wait_time} heures`);
+        console.log(`${new Date()} : Arrosage auto active en mode houly, toutes les ${wait_time} minutes`);
         arrosage_interval = setInterval(arrosage_auto_worker, wait_time*1000);
     } else if (config.arrosage_auto.mode=="daily") {
         let hour = new Date().getHours();
