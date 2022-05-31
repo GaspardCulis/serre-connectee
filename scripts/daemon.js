@@ -34,5 +34,10 @@ function update() {
 
 function arrosage_auto_worker() {
     let ml = getDatabase().config.arrosage_auto.ml;
-    arroser(ml);
+    arroser(ml).then(() => {
+        console.log(`${new Date()} : Arrosage de ${ml} ml`);
+    }).catch((err) => {
+        console.log(`${new Date()} : Erreur pendant l'arrosage : ${err}`);
+    }
+    );
 }
